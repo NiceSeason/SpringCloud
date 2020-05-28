@@ -1,0 +1,34 @@
+server:
+  port: 3344
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/NiceSeason/springcloud-config.git #Github上的git仓库名字
+          ##搜索目录.这个目录指的是github上的目录
+          search-paths:
+      ##读取分支
+      label: master
+  rabbitmq:
+    host: 47.110.152.217
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+
+
+#rabbitmq相关设置 ，暴露 bus刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+
